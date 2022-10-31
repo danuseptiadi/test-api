@@ -1,0 +1,693 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Task-Management
+  contact: {}
+host: localhost
+basePath: /test-api/v1
+securityDefinitions: {}
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /Task:
+    post:
+      summary: addNewTask
+      tags:
+      - Task
+      operationId: addNewTask
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: category_id
+        in: formData
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: title
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: description
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: doc_url
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: finish_date
+        in: formData
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/addNewTask'
+          examples:
+            application/json:
+              status: true
+              message: Success insert to database
+          headers: {}
+    get:
+      description: Request untuk menampilkan semua data di dalam tabel Task
+      summary: getAllTask
+      tags:
+      - Task
+      operationId: getAllTask
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/getAllTask'
+          examples:
+            application/json:
+              status: true
+              message: Success
+              data:
+              - id: '1'
+                category_id: '1'
+                title: '"Latihan Studi Kasus Pemrograman"'
+                description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+                start_date: 2022-10-25
+                finish_date: 2022-10-01
+                status: Finish
+                doc_url: Modul_FWD.pdf
+              - id: '2'
+                category_id: '2'
+                title: '"Latihan Pengenalan Desain Web Dasar"'
+                description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+                start_date: 2022-10-26
+                finish_date: 0000-00-00
+                status: On progress
+                doc_url: Danu_Septi_Adi_FWD2.pdf
+              - id: '4'
+                category_id: '3'
+                title: '"Html Dasar"'
+                description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+                start_date: 2022-10-27
+                finish_date: 0000-00-00
+                status: On progress
+                doc_url: Lembar_Pengesahan.doc
+              - id: '5'
+                category_id: '3'
+                title: test
+                description: test
+                start_date: 2022-10-31
+                finish_date: 2022-11-01
+                status: On progress
+                doc_url: Lembar_Pengesahan5.doc
+              - id: '9'
+                category_id: '5'
+                title: The basics of art
+                description: Learn and analyze the basics in art
+                start_date: 2022-10-31
+                finish_date: 0000-00-00
+                status: New
+                doc_url: ''
+              - id: '10'
+                category_id: '5'
+                title: The basics of art
+                description: Learn and analyze the basics in art
+                start_date: 2022-10-31
+                finish_date: 0000-00-00
+                status: New
+                doc_url: ''
+          headers: {}
+    delete:
+      summary: deleteTaskById
+      tags:
+      - Task
+      operationId: deleteTaskById
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: id
+        in: formData
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/deleteTaskById'
+          examples:
+            application/json:
+              status: true
+              message: Success to delete
+          headers: {}
+  /Task_Categories:
+    post:
+      summary: addTaskCategory
+      tags:
+      - Task-Category
+      operationId: addTaskCategory
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: name
+        in: formData
+        required: true
+        type: string
+        description: ''
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/addTaskCategory'
+          examples:
+            application/json:
+              status: true
+              message: Success to insert database
+          headers: {}
+    get:
+      summary: getTaskCategoryById
+      tags:
+      - Task-Category
+      operationId: getTaskCategoryById
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: query
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/getTaskCategoryById'
+          examples:
+            application/json:
+              status: true
+              message: Sucess
+              data:
+                id: '1'
+                name: pengenalan dunia pemrograman
+          headers: {}
+    put:
+      summary: updateTaskCategory
+      tags:
+      - Task-Category
+      operationId: updateTaskCategory
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: id
+        in: formData
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: name
+        in: formData
+        required: true
+        type: string
+        description: ''
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/updateTaskCategory'
+          examples:
+            application/json:
+              status: true
+              message: Success to update
+              before update:
+                id: '7'
+                name: Deno Js
+              after update:
+                id: '7'
+                name: Updated
+          headers: {}
+    delete:
+      summary: deleteTaskCategories
+      tags:
+      - Task-Category
+      operationId: deleteTaskCategories
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: id
+        in: formData
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/deleteTaskCategories'
+          examples:
+            application/json:
+              status: true
+              message: 'Success to delete '
+          headers: {}
+  /:
+    get:
+      summary: getAllTaskCategories
+      tags:
+      - Task-Category
+      operationId: getAllTaskCategories
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/getAllTaskCategories'
+          examples:
+            application/json:
+              status: true
+              message: Sucess
+              data:
+              - id: '1'
+                name: pengenalan dunia pemrograman
+              - id: '2'
+                name: pengenalan desain web
+              - id: '3'
+                name: html
+              - id: '4'
+                name: css
+              - id: '5'
+                name: php
+              - id: '6'
+                name: mvc
+              - id: '7'
+                name: Deno Js
+              - id: '12'
+                name: danu
+              - id: '13'
+                name: test
+              - id: '14'
+                name: test
+          headers: {}
+definitions:
+  addNewTask:
+    title: addNewTask
+    example:
+      status: true
+      message: Success insert to database
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+    required:
+    - status
+    - message
+  getAllTask:
+    title: getAllTask
+    example:
+      status: true
+      message: Success
+      data:
+      - id: '1'
+        category_id: '1'
+        title: '"Latihan Studi Kasus Pemrograman"'
+        description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+        start_date: 2022-10-25
+        finish_date: 2022-10-01
+        status: Finish
+        doc_url: Modul_FWD.pdf
+      - id: '2'
+        category_id: '2'
+        title: '"Latihan Pengenalan Desain Web Dasar"'
+        description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+        start_date: 2022-10-26
+        finish_date: 0000-00-00
+        status: On progress
+        doc_url: Danu_Septi_Adi_FWD2.pdf
+      - id: '4'
+        category_id: '3'
+        title: '"Html Dasar"'
+        description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+        start_date: 2022-10-27
+        finish_date: 0000-00-00
+        status: On progress
+        doc_url: Lembar_Pengesahan.doc
+      - id: '5'
+        category_id: '3'
+        title: test
+        description: test
+        start_date: 2022-10-31
+        finish_date: 2022-11-01
+        status: On progress
+        doc_url: Lembar_Pengesahan5.doc
+      - id: '9'
+        category_id: '5'
+        title: The basics of art
+        description: Learn and analyze the basics in art
+        start_date: 2022-10-31
+        finish_date: 0000-00-00
+        status: New
+        doc_url: ''
+      - id: '10'
+        category_id: '5'
+        title: The basics of art
+        description: Learn and analyze the basics in art
+        start_date: 2022-10-31
+        finish_date: 0000-00-00
+        status: New
+        doc_url: ''
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Datum'
+    required:
+    - status
+    - message
+    - data
+  Datum:
+    title: Datum
+    example:
+      id: '1'
+      category_id: '1'
+      title: '"Latihan Studi Kasus Pemrograman"'
+      description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+      start_date: 2022-10-25
+      finish_date: 2022-10-01
+      status: Finish
+      doc_url: Modul_FWD.pdf
+    type: object
+    properties:
+      id:
+        type: string
+      category_id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      start_date:
+        type: string
+      finish_date:
+        type: string
+      status:
+        type: string
+      doc_url:
+        type: string
+    required:
+    - id
+    - category_id
+    - title
+    - description
+    - start_date
+    - finish_date
+    - status
+    - doc_url
+  getTaskById:
+    title: getTaskById
+    example:
+      status: true
+      message: Success
+      data:
+        id: '4'
+        category_id: '3'
+        title: '"Html Dasar"'
+        description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+        start_date: 2022-10-27
+        finish_date: 0000-00-00
+        status: On progress
+        doc_url: Lembar_Pengesahan.doc
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      data:
+        $ref: '#/definitions/Data'
+    required:
+    - status
+    - message
+    - data
+  Data:
+    title: Data
+    example:
+      id: '4'
+      category_id: '3'
+      title: '"Html Dasar"'
+      description: "\"Pada sesi latihan ini anda diminta untuk menuliskan kode untuk memecahkan masalah berdasarkan soal di bawah ini. Bebas menggunakan bahasa pemrograman apa saja \n\nBuatlah sebuah program yang dapat menginputkan dan menampilkan data berikut\n1. Nama\n2. Tempat Lahir\n3. Usia\nsetelah itu buatlah sebuah output tambahan berupa kategori usia dengan ketentuan\njika inputan usia \n- 15-17 tahun, maka kategori usia remaja\n- 18-22 tahun, maka kategori usia dewasa\n\nMasukkan Source Code dari program yang sudah dibuat ke dalam format dokumen (.doc,pdf dsb) lalu submit pada field yang disediakan\""
+      start_date: 2022-10-27
+      finish_date: 0000-00-00
+      status: On progress
+      doc_url: Lembar_Pengesahan.doc
+    type: object
+    properties:
+      id:
+        type: string
+      category_id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      start_date:
+        type: string
+      finish_date:
+        type: string
+      status:
+        type: string
+      doc_url:
+        type: string
+    required:
+    - id
+    - category_id
+    - title
+    - description
+    - start_date
+    - finish_date
+    - status
+    - doc_url
+  updateTask:
+    title: updateTask
+    example:
+      status: true
+      message: Success update row
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+    required:
+    - status
+    - message
+  deleteTaskById:
+    title: deleteTaskById
+    example:
+      status: true
+      message: Success to delete
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+    required:
+    - status
+    - message
+  addTaskCategory:
+    title: addTaskCategory
+    example:
+      status: true
+      message: Success to insert database
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+    required:
+    - status
+    - message
+  getAllTaskCategories:
+    title: getAllTaskCategories
+    example:
+      status: true
+      message: Sucess
+      data:
+      - id: '1'
+        name: pengenalan dunia pemrograman
+      - id: '2'
+        name: pengenalan desain web
+      - id: '3'
+        name: html
+      - id: '4'
+        name: css
+      - id: '5'
+        name: php
+      - id: '6'
+        name: mvc
+      - id: '7'
+        name: Deno Js
+      - id: '12'
+        name: danu
+      - id: '13'
+        name: test
+      - id: '14'
+        name: test
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Data1'
+    required:
+    - status
+    - message
+    - data
+  Data1:
+    title: Data1
+    example:
+      id: '1'
+      name: pengenalan dunia pemrograman
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    required:
+    - id
+    - name
+  getTaskCategoryById:
+    title: getTaskCategoryById
+    example:
+      status: true
+      message: Sucess
+      data:
+        id: '1'
+        name: pengenalan dunia pemrograman
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      data:
+        $ref: '#/definitions/Data1'
+    required:
+    - status
+    - message
+    - data
+  updateTaskCategory:
+    title: updateTaskCategory
+    example:
+      status: true
+      message: Success to update
+      before update:
+        id: '7'
+        name: Deno Js
+      after update:
+        id: '7'
+        name: Updated
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      before update:
+        $ref: '#/definitions/BeforeUpdate'
+      after update:
+        $ref: '#/definitions/AfterUpdate'
+    required:
+    - status
+    - message
+    - before update
+    - after update
+  BeforeUpdate:
+    title: BeforeUpdate
+    example:
+      id: '7'
+      name: Deno Js
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    required:
+    - id
+    - name
+  AfterUpdate:
+    title: AfterUpdate
+    example:
+      id: '7'
+      name: Updated
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    required:
+    - id
+    - name
+  deleteTaskCategories:
+    title: deleteTaskCategories
+    example:
+      status: true
+      message: 'Success to delete '
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+    required:
+    - status
+    - message
+tags:
+- name: Task
+- name: Task-Category
